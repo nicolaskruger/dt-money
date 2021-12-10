@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { Container } from "./styles";
 
 type Transaction = {
@@ -36,6 +36,10 @@ const formatDate = (date: Date): string => {
 }
 
 export const TransactionTable: FC = () => {
+
+    useEffect(() => {
+        fetch("http://localhost:3000/api/transactions")
+    }, [])
 
     return (
         <Container>
