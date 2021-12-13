@@ -1,7 +1,9 @@
 import { FC } from "react";
 import Modal from "react-modal";
-import { Container } from "./styles";
+import { Container, TransactionTypeContainer } from "./styles";
 import closeImg from "../../assets/fechar.svg";
+import inImg from "../../assets/entradas.svg";
+import outImg from "../../assets/saidas.svg";
 
 export const NewTransactionModal: FC<ReactModal.Props> = (props) => {
     return (
@@ -24,6 +26,25 @@ export const NewTransactionModal: FC<ReactModal.Props> = (props) => {
                 </h2>
                 <input placeholder="Titulo" type="text" name="" id="" />
                 <input placeholder="Valor" type="number" name="" id="" />
+                <TransactionTypeContainer>
+                    <button
+                        type="button"
+                    >
+                        <img src={inImg} alt="Entrada" />
+                        <span>
+                            Entrada
+                        </span>
+                    </button>
+                    <button
+                        type="button"
+                    >
+                        <img src={outImg} alt="Saida" />
+                        <span>
+                            Saida
+                        </span>
+                    </button>
+
+                </TransactionTypeContainer>
                 <input placeholder="Categoria" type="text" name="" id="" />
                 <button type="submit">
                     Cadastrar
