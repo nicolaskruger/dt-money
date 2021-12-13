@@ -3,6 +3,7 @@ import { api } from "../../services/api";
 import { Container } from "./styles";
 
 type Transaction = {
+    id: number,
     title: string,
     value: number,
     type: string,
