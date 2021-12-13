@@ -1,13 +1,24 @@
-import { FC, useState } from "react";
+import { FC, FormEvent, useState } from "react";
 import Modal from "react-modal";
 import { RadioBox, Container, TransactionTypeContainer } from "./styles";
 import closeImg from "../../assets/fechar.svg";
 import inImg from "../../assets/entradas.svg";
 import outImg from "../../assets/saidas.svg";
+import { Input } from "../input";
 
 export const NewTransactionModal: FC<ReactModal.Props> = (props) => {
 
     const [type, setType] = useState<'deposit' | 'withdraw'>("deposit");
+
+    const [title, setTitle] = useState('');
+    const [value, setValue] = useState(0);
+    const [category, setCategory] = useState('');
+
+    const handleCreateNewTransaction = (event: FormEvent) => {
+        event.preventDefault();
+        event.stopPropagation();
+    }
+
     return (
         <Modal
             {...props}
@@ -15,7 +26,9 @@ export const NewTransactionModal: FC<ReactModal.Props> = (props) => {
             className="react-modal-content"
         >
 
-            <Container>
+            <Container
+                onSubmit={handleCreateNewTransaction}
+            >
                 <button
                     type="button"
                     onClick={props.onRequestClose}
@@ -26,8 +39,22 @@ export const NewTransactionModal: FC<ReactModal.Props> = (props) => {
                 <h2>
                     Cadastro transação
                 </h2>
-                <input placeholder="Titulo" type="text" name="" id="" />
-                <input placeholder="Valor" type="number" name="" id="" />
+                <Input
+                    placeholder="Titulo"
+                    type="text"
+                    name=""
+                    id=""
+                    value={title}
+                    onChange={setTitle}
+                />
+                <Input
+                    placeholder="Valor"
+                    type="number"
+                    name=""
+                    id=""
+                    value={value}
+                    onChange={setValue}
+                />
                 <TransactionTypeContainer>
                     <RadioBox
                         type="button"
@@ -53,7 +80,14 @@ export const NewTransactionModal: FC<ReactModal.Props> = (props) => {
                     </RadioBox>
 
                 </TransactionTypeContainer>
-                <input placeholder="Categoria" type="text" name="" id="" />
+                <Input
+                    placeholder="Categoria"
+                    type="text"
+                    name=""
+                    id=""
+                    value={category}
+                    onChange={setCategory} />
+
                 <button type="submit">
                     Cadastrar
                 </button>
