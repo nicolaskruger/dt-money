@@ -1,4 +1,4 @@
-import { ChangeEventHandler, FC, InputHTMLAttributes } from "react"
+import { FC, InputHTMLAttributes } from "react"
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
     onChange?: (val: any) => void

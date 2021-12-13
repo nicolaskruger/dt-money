@@ -3,8 +3,8 @@ import { api } from "../../services/api";
 import { Container } from "./styles";
 
 type Transaction = {
-    name: string,
-    price: number,
+    title: string,
+    value: number,
     type: string,
     date: Date,
 }
@@ -21,9 +21,9 @@ export const TransactionTable: FC = () => {
     const [list, setList] = useState<Transaction[]>([])
 
     useEffect(() => {
-        api.get<Transaction[]>("/transactions")
+        api.get("/transactions")
             .then(t => {
-                setList(t.data);
+                setList(t.data.transactions);
             });
     }, [])
 
@@ -39,7 +39,7 @@ export const TransactionTable: FC = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {list.map(({ name, price, type, date }, index) => (
+                    {list.map(({ title: name, value: price, type, date }, index) => (
                         <tr key={index}>
                             <td>
                                 {name}

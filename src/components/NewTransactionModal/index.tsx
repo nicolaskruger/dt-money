@@ -5,6 +5,7 @@ import closeImg from "../../assets/fechar.svg";
 import inImg from "../../assets/entradas.svg";
 import outImg from "../../assets/saidas.svg";
 import { Input } from "../input";
+import { api } from "../../services/api";
 
 export const NewTransactionModal: FC<ReactModal.Props> = (props) => {
 
@@ -17,6 +18,15 @@ export const NewTransactionModal: FC<ReactModal.Props> = (props) => {
     const handleCreateNewTransaction = (event: FormEvent) => {
         event.preventDefault();
         event.stopPropagation();
+
+        const data = {
+            title,
+            value,
+            category,
+            type,
+        };
+
+        api.post("/transactions", data);
     }
 
     return (
