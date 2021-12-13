@@ -8,12 +8,22 @@ createServer({
     this.get('/transactions', () => {
       return [
         {
-          id: 1,
-          title: "Transaction 1",
-          amount: 400,
-          type: "deposit",
-          category: "Food",
-          createdAt: new Date(),
+          name: "Desenvovimento de website",
+          price: 12_000,
+          type: "Desenvolvimento",
+          date: new Date(),
+        },
+        {
+          name: "Desenvovimento de website",
+          price: -12_000,
+          type: "Desenvolvimento",
+          date: new Date(),
+        },
+        {
+          name: "Desenvovimento de website",
+          price: 12_000,
+          type: "Desenvolvimento",
+          date: new Date(),
         }
       ]
     })

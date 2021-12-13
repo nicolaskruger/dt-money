@@ -23,5 +23,4 @@ export const Content = styled.div`
           filter: brightness(0.9);
         }
     }
-
 `;

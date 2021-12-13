@@ -1,4 +1,5 @@
-import { FC, useEffect } from "react";
+import { FC, useEffect, useState } from "react";
+import { api } from "../../services/api";
 import { Container } from "./styles";
 
 type Transaction = {
@@ -8,28 +9,8 @@ type Transaction = {
     date: Date,
 }
 
-const list: Transaction[] = [
-    {
-        name: "Desenvovimento de website",
-        price: 12_000,
-        type: "Desenvolvimento",
-        date: new Date(),
-    },
-    {
-        name: "Desenvovimento de website",
-        price: -12_000,
-        type: "Desenvolvimento",
-        date: new Date(),
-    },
-    {
-        name: "Desenvovimento de website",
-        price: 12_000,
-        type: "Desenvolvimento",
-        date: new Date(),
-    }
-]
-
 const formatDate = (date: Date): string => {
+    date = new Date(date);
     const getDate = (date: Date) => date.getDay().toString().padStart(2, '0');
     const getMouth = (date: Date) => date.getMonth().toString().padStart(2, '0');
     return `${getDate(date)}/${getMouth(date)}/${date.getFullYear()}`
@@ -37,8 +18,13 @@ const formatDate = (date: Date): string => {
 
 export const TransactionTable: FC = () => {
 
+    const [list, setList] = useState<Transaction[]>([])
+
     useEffect(() => {
-        fetch("http://localhost:3000/api/transactions")
+        api.get<Transaction[]>("/transactions")
+            .then(t => {
+                setList(t.data);
+            });
     }, [])
 
     return (
@@ -54,7 +40,7 @@ export const TransactionTable: FC = () => {
                 </thead>
                 <tbody>
                     {list.map(({ name, price, type, date }, index) => (
-                        <tr>
+                        <tr key={index}>
                             <td>
                                 {name}
                             </td>
