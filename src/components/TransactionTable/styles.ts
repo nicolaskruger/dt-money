@@ -23,7 +23,7 @@ export const Container = styled.div`
       &:first-child {
         color: var(--text-title);
       }
-      &.withDraw {
+      &.withdraw {
         color: var(--red);
       }
       &.deposit {

@@ -45,14 +45,17 @@ export const TransactionTable: FC = () => {
                             <td>
                                 {name}
                             </td>
-                            <td className={price < 0 ? "withDraw" : "deposit"}>
-                                {`R$ ${price}`}
+                            <td className={type}>
+                                {new Intl.NumberFormat('pt-BR', {
+                                    style: 'currency',
+                                    currency: "BRL"
+                                }).format(Math.abs(price))}
                             </td>
                             <td>
                                 {type}
                             </td>
                             <td>
-                                {formatDate(date)}
+                                {new Intl.DateTimeFormat('pt-BR').format(new Date(date))}
                             </td>
                         </tr>
                     ))}
