@@ -1,4 +1,4 @@
-import { darken } from "polished";
+import { darken, transparentize } from "polished";
 import styled from "styled-components";
 
 export const Container = styled.form`
@@ -60,10 +60,25 @@ export const TransactionTypeContainer = styled.div`
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 0.5rem;
-    button{
+    
+`;
+
+type RadioBoxProps = {
+    transactionType: 'deposit' | 'withdraw',
+    isActive: boolean
+}
+
+const color = {
+    deposit: "#12A454",
+    withdraw: "#E52E4D"
+}
+
+export const RadioBox = styled.button<RadioBoxProps>`
         border: 1px solid #d7d7d7;
         border-radius: 0.25rem;
-        background: transparent;
+        background: ${(prop: RadioBoxProps) =>
+        prop.isActive ? transparentize(0.9, color[prop.transactionType])
+            : "transparent"};
         height: 4rem;
         display: flex;
         align-items: center;
@@ -85,5 +100,4 @@ export const TransactionTypeContainer = styled.div`
             margin-left: 1rem;
             font-size: 1rem;
         }
-    }
 `;
