@@ -1,9 +1,9 @@
-import { FC, useContext } from "react";
+import { FC } from "react";
 import { Container } from "./styles";
 import incomeImg from "../../assets/entradas.svg";
 import outcomeImg from "../../assets/saidas.svg";
 import totalmg from "../../assets/total.svg";
-import { TransactionContext } from "../../TransactonContext";
+import { useTransactions } from "../../hooks/useTransactions";
 
 type SummaryProps = {
     name: string,
@@ -47,7 +47,7 @@ const sumaryInit: SumaryDto = {
 
 export const Summary: FC = () => {
 
-    const data = useContext(TransactionContext).transactions;
+    const data = useTransactions().transactions;
 
 
 

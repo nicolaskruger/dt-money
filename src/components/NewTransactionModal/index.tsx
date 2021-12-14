@@ -1,17 +1,17 @@
-import { FC, FormEvent, useContext, useState } from "react";
+import { FC, FormEvent, useState } from "react";
 import Modal from "react-modal";
 import { RadioBox, Container, TransactionTypeContainer } from "./styles";
 import closeImg from "../../assets/fechar.svg";
 import inImg from "../../assets/entradas.svg";
 import outImg from "../../assets/saidas.svg";
 import { Input } from "../input";
-import { TransactionContext } from "../../TransactonContext";
+import { useTransactions } from "../../hooks/useTransactions";
 
 export const NewTransactionModal: FC<ReactModal.Props> = (props) => {
 
     const [type, setType] = useState<'deposit' | 'withdraw'>("deposit");
 
-    const { createTransaction } = useContext(TransactionContext);
+    const { createTransaction } = useTransactions();
 
     const [title, setTitle] = useState('');
     const [value, setValue] = useState(0);
