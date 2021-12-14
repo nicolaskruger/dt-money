@@ -17,17 +17,29 @@ export const NewTransactionModal: FC<ReactModal.Props> = (props) => {
     const [value, setValue] = useState(0);
     const [category, setCategory] = useState('');
 
-    const handleCreateNewTransaction = (event: FormEvent) => {
+    const handleCreateNewTransaction = async (event: FormEvent) => {
         event.preventDefault();
         event.stopPropagation();
 
-        createTransaction({
-            category,
-            date: new Date(),
-            title,
-            type,
-            value
-        })
+        try {
+            await createTransaction({
+                category,
+                date: new Date(),
+                title,
+                type,
+                value
+            });
+
+            setTitle("");
+            setCategory("");
+            setType("deposit");
+            setValue(0);
+            (props.onRequestClose as () => void)();
+
+        } catch (error) {
+
+        }
+
 
     }
 
