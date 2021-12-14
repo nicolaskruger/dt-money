@@ -1,8 +1,9 @@
-import { FC } from "react";
+import { FC, useContext } from "react";
 import { Container } from "./styles";
 import incomeImg from "../../assets/entradas.svg";
 import outcomeImg from "../../assets/saidas.svg";
 import totalmg from "../../assets/total.svg";
+import { TransactionContext } from "../../TransactonContext";
 
 type SummaryProps = {
     name: string,
@@ -29,6 +30,9 @@ const list: SummaryProps[] = [
 ];
 
 export const Summary: FC = () => {
+
+    const data = useContext(TransactionContext);
+
     return (
         <Container>
             {list.map(({ name, img, price }, index) => (
