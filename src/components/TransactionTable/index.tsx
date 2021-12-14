@@ -1,5 +1,5 @@
-import { FC, useEffect, useState } from "react";
-import { api } from "../../services/api";
+import { FC, useContext } from "react";
+import { TransactionContext } from "../../TransactonContext";
 import { Container } from "./styles";
 
 type Transaction = {
@@ -7,26 +7,13 @@ type Transaction = {
     title: string,
     value: number,
     type: string,
+    category: string,
     date: Date,
-}
-
-const formatDate = (date: Date): string => {
-    date = new Date(date);
-    const getDate = (date: Date) => date.getDay().toString().padStart(2, '0');
-    const getMouth = (date: Date) => date.getMonth().toString().padStart(2, '0');
-    return `${getDate(date)}/${getMouth(date)}/${date.getFullYear()}`
 }
 
 export const TransactionTable: FC = () => {
 
-    const [list, setList] = useState<Transaction[]>([])
-
-    useEffect(() => {
-        api.get("/transactions")
-            .then(t => {
-                setList(t.data.transactions);
-            });
-    }, [])
+    const list = useContext(TransactionContext) as Transaction[];
 
     return (
         <Container>
