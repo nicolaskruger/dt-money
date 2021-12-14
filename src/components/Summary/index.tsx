@@ -74,7 +74,8 @@ export const Summary: FC = () => {
             },
             total: {
                 ...acc.total,
-                price: acc.total.price + (curr.type === "deposit" ? 1 : -1) * curr.value
+                price: acc.total.price +
+                    (curr.type === "deposit" ? 1 : -1) * Math.abs(curr.value)
             }
         };
     }, sumaryInit);
