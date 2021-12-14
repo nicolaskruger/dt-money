@@ -1,15 +1,17 @@
-import { FC, FormEvent, useState } from "react";
+import { FC, FormEvent, useContext, useState } from "react";
 import Modal from "react-modal";
 import { RadioBox, Container, TransactionTypeContainer } from "./styles";
 import closeImg from "../../assets/fechar.svg";
 import inImg from "../../assets/entradas.svg";
 import outImg from "../../assets/saidas.svg";
 import { Input } from "../input";
-import { api } from "../../services/api";
+import { TransactionContext } from "../../TransactonContext";
 
 export const NewTransactionModal: FC<ReactModal.Props> = (props) => {
 
     const [type, setType] = useState<'deposit' | 'withdraw'>("deposit");
+
+    const { createTransaction } = useContext(TransactionContext);
 
     const [title, setTitle] = useState('');
     const [value, setValue] = useState(0);
@@ -19,14 +21,14 @@ export const NewTransactionModal: FC<ReactModal.Props> = (props) => {
         event.preventDefault();
         event.stopPropagation();
 
-        const data = {
-            title,
-            value,
+        createTransaction({
             category,
+            date: new Date(),
+            title,
             type,
-        };
+            value
+        })
 
-        api.post("/transactions", data);
     }
 
     return (

@@ -47,7 +47,7 @@ const sumaryInit: SumaryDto = {
 
 export const Summary: FC = () => {
 
-    const data = useContext(TransactionContext) as Transaction[];
+    const data = useContext(TransactionContext).transactions;
 
 
 

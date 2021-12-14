@@ -17,6 +17,7 @@ export const App: FC = () => {
   const handleCloseNewTransactionModal = () => setIsNewTransactionModalOpen(false);
 
 
+
   return (
     <TransactionProvider>
 

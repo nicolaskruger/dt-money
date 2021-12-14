@@ -2,18 +2,9 @@ import { FC, useContext } from "react";
 import { TransactionContext } from "../../TransactonContext";
 import { Container } from "./styles";
 
-type Transaction = {
-    id: number,
-    title: string,
-    value: number,
-    type: string,
-    category: string,
-    date: Date,
-}
-
 export const TransactionTable: FC = () => {
 
-    const list = useContext(TransactionContext) as Transaction[];
+    const list = useContext(TransactionContext).transactions;
 
     return (
         <Container>
